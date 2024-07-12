@@ -1,0 +1,44 @@
+### Get all employee
+GET http://localhost:3000/api/employees
+X-API-Key: RAHASIA
+Accept: application/json
+
+### Crete new employee
+POST http://localhost:3000/api/employee
+X-API-Key: RAHASIA
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName"        : "Aziz",
+  "lastName"         : "Ahmad",
+  "idCard"           : 1224,
+  "hireDate"         : "2024-07-01",
+  "terminationDate"  : "2024-08-01",
+  "salary"           : "8000000"
+}
+
+### Get employee by id
+GET http://localhost:3000/api/employee/
+X-API-Key: RAHASIA
+Accept: application/json
+
+### Update new employee
+PUT http://localhost:3000/api/employee/1
+X-API-Key: RAHASIA
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName"        : "Aziz",
+  "lastName"         : "Ahmad",
+  "idCard"           : 1224,
+  "hireDate"         : "2024-07-01",
+  "terminationDate"  : "2024-08-01",
+  "salary"           : "8000000"
+}
+
+### Delete employee by
+DELETE http://localhost:3000/api/employee/3
+X-API-Key: RAHASIA
+Accept: application/json

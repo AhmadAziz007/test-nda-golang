@@ -1,0 +1,276 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Employee RESTful API",
+    "description": "API Spec for Employee RESTful API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "paths": {
+    "/Employees": {
+      "get": {
+        "security": [{
+          "EmployeeAuth" : []
+        }],
+        "tags": [
+          "Employee API"
+        ],
+        "description": "List all Employees",
+        "summary": "List all Employees",
+        "responses": {
+          "200": {
+            "description": "Success get all Employees",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Employee"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [{
+          "EmployeeAuth" : []
+        }],
+        "tags": ["Employee API"],
+        "description": "Create new Employee",
+        "summary": "Create new Employee",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateEmployee"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success Create Employee",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code" : {
+                      "type": "number"
+                    },
+                    "status" : {
+                      "type": "string"
+                    },
+                    "data" : {
+                      "$ref": "#/components/schemas/Employee"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Employees/{employeeId}" : {
+      "get" : {
+        "security": [{
+          "EmployeeAuth" : []
+        }],
+        "tags": ["Employee API"],
+        "summary": "Get Employee by Id",
+        "description": "Get Employee by id",
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "description": "Employee Id"
+          }
+        ],
+        "responses": {
+          "200" : {
+            "description": "Success get Employee",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code" : {
+                      "type": "number"
+                    },
+                    "status" : {
+                      "type": "string"
+                    },
+                    "data" : {
+                      "$ref": "#/components/schemas/Employee"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "security": [{
+          "EmployeeAuth" : []
+        }],
+        "tags": ["Employee API"],
+        "summary": "Update Employee by Id",
+        "description": "Update Employee by Id",
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "description": "Employee Id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateEmployee"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200" : {
+            "description": "Success get Employee",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code" : {
+                      "type": "number"
+                    },
+                    "status" : {
+                      "type": "string"
+                    },
+                    "data" : {
+                      "$ref": "#/components/schemas/Employee"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [{
+          "EmployeeAuth" : []
+        }],
+        "tags": ["Employee API"],
+        "summary": "Delete Employee by Id",
+        "description": "Delete Employee by id",
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "description": "Employee Id"
+          }
+        ],
+        "responses": {
+          "200" : {
+            "description": "Success delete Employee",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code" : {
+                      "type": "number"
+                    },
+                    "status" : {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "EmployeeAuth" : {
+        "type": "apiKey",
+        "in" : "header",
+        "name": "X-API-Key",
+        "description": "Authentication for Employee API"
+      }
+    },
+    "schemas": {
+      "CreateOrUpdateEmployee" : {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "id_card": {
+            "type": "number"
+          },
+          "hire_date": {
+            "type": "date"
+          },
+          "termination_date": {
+            "type": "date"
+          },
+          "salary": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Employee" : {
+        "type": "object",
+        "properties": {
+          "employee_id": {
+            "type": "number"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "id_card": {
+            "type": "number"
+          },
+          "hire_date": {
+            "type": "date"
+          },
+          "termination_date": {
+            "type": "date"
+          },
+          "salary": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
