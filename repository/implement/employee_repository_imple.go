@@ -16,7 +16,7 @@ func NewEmployeeRepository() repository.EmployeeRepository {
 }
 
 func (repository *EmployeeRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, employee domain.Employee) domain.Employee {
-	SQL := "insert into employee (first_name, last_name, id_card, hire_date, termination_date, salary) values (?, ?)"
+	SQL := "insert into employee (first_name, last_name, id_card, hire_date, termination_date, salary) values (?, ?, ?, ?, ?, ?)"
 	result, err := tx.ExecContext(ctx, SQL, employee.FirstName, employee.LastName, employee.IdCard, employee.HireDate, employee.TerminationDate, employee.Salary)
 	helper.PanicIfError(err)
 
